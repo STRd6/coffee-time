@@ -1,9 +1,16 @@
 require "active_support"
+require "active_support/all"
+
 require "./create_invite"
 require "./send_emails"
 
 require "redis"
 $REDIS = Redis.new
+
+if $REDIS.get "ran_recently"
+  puts "Nothing to do, last ran at #{$REDIS.get("last_ran")}"
+  exit
+end
 
 # People are stored as a big ol' string in redis
 people_txt = $REDIS.get "people"
@@ -52,3 +59,7 @@ pairings.each_with_index do |pairing, index|
 
   puts " DONE!"
 end
+
+$REDIS.set "last_ran", Time.now
+$REDIS.set "ran_recently", true
+$REDIS.expire "ran_recently", (1.week.from_now - Time.now).to_i - 7200
