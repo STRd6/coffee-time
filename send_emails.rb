@@ -12,16 +12,20 @@ require "mandrill"
 def send_emails(recipients, invite)
   recipients.each do |person|
     others = (recipients - [person])
-    others_names = others.map(&:first).join " and "
+    others_names = others.map do |person|
+      "#{person.first} (#{person.last})"
+    end.join " and "
 
     email = person.last
 
     message = {
-     "text"=> "Get to know your coworkers. Randomized lunch meetings with people at Fog Creek. Meet up in person or over a hangout, eat lunch, and chat.
+     "text"=> "Get to know your coworkers. Meet up in person or over a hangout, eat lunch, and chat.
 
-This week you're having lunch with #{others_names}. Be sure to reschedule if you have a confilct.
+This week you're having lunch with #{others_names} on Wednesday 12pm EST.
 
 Enjoy!
+
+P.S. Email danielx@fogcreek.com with questions, comments or suggestions about Lunchbox.
 
 - Lunchbox",
      "subject"=> "Lunchbox",

@@ -53,7 +53,9 @@ pairings.each_with_index do |pairing, index|
 
   print email_addresses.inspect
 
-  invite = create_invite email_addresses
+  # Assuming being sent out on Friday morning
+  start_time = 5.days.from_now.at_noon
+  invite = create_invite start_time
 
   send_emails pairing, invite
 
