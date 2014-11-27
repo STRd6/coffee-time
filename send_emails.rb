@@ -28,7 +28,7 @@ Enjoy!
 P.S. Email danielx@fogcreek.com with questions, comments or suggestions about Lunchbox.
 
 - Lunchbox",
-     "subject"=> "Lunchbox",
+     "subject"=> "Lunchbox with #{others_names}",
      "from_email"=> "lunchbox@fogcreek.com",
      "from_name"=> "Lunchbox",
      "to" => [{
