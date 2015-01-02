@@ -13,7 +13,9 @@ def send_emails(recipients)
     others_names = others.map do |person|
       "#{person.first} (#{person.last})"
     end.join " and "
-
+    # TODO: Can't get multi-way reply-to working
+    # this will cover it for 90% of the time
+    reply_to = others.first.last
     email = person.last
 
     message = {
@@ -33,7 +35,10 @@ P.S. Email danielx@fogcreek.com with questions, comments or suggestions about Co
         "email" => person.last,
         "name" => person.first,
         "type" => "to"
-      }]
+      }],
+      "headers" => {
+        "Reply-To" => reply_to
+      }
     }
 
     mandrill = Mandrill::API.new
