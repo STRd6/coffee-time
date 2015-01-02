@@ -1,7 +1,6 @@
 require "active_support"
 require "active_support/all"
 
-require "./create_invite"
 require "./send_emails"
 
 require "redis"
@@ -55,9 +54,8 @@ pairings.each_with_index do |pairing, index|
 
   # Assuming being sent out on Friday morning
   start_time = 5.days.from_now.at_noon
-  invite = create_invite start_time
 
-  send_emails pairing, invite
+  send_emails pairing
 
   puts " DONE!"
 end

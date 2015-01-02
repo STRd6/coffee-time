@@ -6,10 +6,8 @@ require "mandrill"
 #   ["Daniel", "danielx@fogcreek.com"]
 #   ...
 # ]
-#
-# invite is an ical text string
-# https://tools.ietf.org/html/rfc5545
-def send_emails(recipients, invite)
+
+def send_emails(recipients)
   recipients.each do |person|
     others = (recipients - [person])
     others_names = others.map do |person|
@@ -19,28 +17,23 @@ def send_emails(recipients, invite)
     email = person.last
 
     message = {
-     "text"=> "Get to know your coworkers. Meet up in person or over a hangout, eat lunch, and chat.
+     "text"=> "This week you're meeting with #{others_names} on Wednesday 12pm EST.
 
-This week you're having lunch with #{others_names} on Wednesday 12pm EST.
+Get to know your coworkers. Meet up in person or over a hangout, grab a coffee, and chat. Plan to meet for about half an hour and please reschedule if you have a conflict.
 
 Enjoy!
 
-P.S. Email danielx@fogcreek.com with questions, comments or suggestions about Lunchbox.
+P.S. Email danielx@fogcreek.com with questions, comments or suggestions about CoffeeTime.
 
-- Lunchbox",
-     "subject"=> "Lunchbox with #{others_names}",
-     "from_email"=> "lunchbox@fogcreek.com",
-     "from_name"=> "Lunchbox",
+- Mr. CoffeeTime",
+     "subject"=> "CoffeeTime with #{others_names}",
+     "from_email"=> "danielx@fogcreek.com",
+     "from_name"=> "CoffeeTime",
      "to" => [{
         "email" => person.last,
         "name" => person.first,
         "type" => "to"
-      }],
-      "attachments" => [{
-        "type" => "text/calendar",
-        "name" => "invitation.ics",
-        "content" => Base64.encode64(invite)
-      }],
+      }]
     }
 
     mandrill = Mandrill::API.new
