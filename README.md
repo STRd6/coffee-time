@@ -8,7 +8,7 @@ Why
 
 Maintaining company culture, enhancing cross team communication, serendipitous learning are all important things. They often happen naturally as coworkers share an office space. What happens when many people are remote? Chance encounters with other people can become far more rare.
 
-CoffeeTime was created to pair people up randomly to talk to one another. It doesn't matter what level in the org chart, or what role a person plays. Anyone can be matched up with anyone for a 30 video chat.
+CoffeeTime was created to pair people up randomly to talk to one another. It doesn't matter what level in the org chart, or what role a person plays. Anyone can be matched up with anyone for a 30 minute video chat.
 
 The most important things to learn are often the things you didn't even know you needed to know. By making more connections with the people you work with it increases the likelihood that you'll have access to someone who can help. Maybe another person is having a similar problem to one you had and you can point them in the right direction. Maybe you just end up making a new friend!
 
@@ -59,4 +59,4 @@ Add a Heroku scheduled task that runs daily:
 
 This will check every day if it's been a week since the last email was sent out, if it has, it sends a new email.
 
-We'd actually prefer to schedule for weekly, but daily is the minimum allowed with Heroku Scheduler
+We'd actually prefer to schedule for weekly, but daily is the maximum period allowed with Heroku Scheduler
