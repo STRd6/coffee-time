@@ -1,5 +1,5 @@
 require "base64"
-require "mandrill"
+require "mailgun"
 
 # recipients is an array of name email pairs
 # [
@@ -19,7 +19,7 @@ def send_emails(recipients)
     email = person.last
 
     message = {
-     "text"=> "This week you're meeting with #{others_names} on Wednesday 12pm EST.
+      "text"=> "This week you're meeting with #{others_names} on Wednesday 12pm EST.
 
 Get to know your coworkers. Meet up in person or over a hangout, grab a coffee, and chat. Plan to meet for about half an hour and please reschedule if you have a conflict.
 
@@ -28,26 +28,20 @@ Enjoy!
 P.S. Email danielx@fogcreek.com with questions, comments or suggestions about CoffeeTime.
 
 - Mr. CoffeeTime",
-     "subject"=> "CoffeeTime with #{others_names}",
-     "from_email"=> "danielx@fogcreek.com",
-     "from_name"=> "CoffeeTime",
-     "to" => [{
-        "email" => person.last,
-        "name" => person.first,
-        "type" => "to"
-      }],
-      "headers" => {
-        "Reply-To" => reply_to
-      }
+      "subject"=> "CoffeeTime with #{others_names}",
+      "from"=> "Daniel X <danielx@fogcreek.com>",
+      "to" => "#{person.first} <#{person.last}>",
+      "h:Reply-To" => reply_to
     }
 
-    mandrill = Mandrill::API.new
+    mailgun = Mailgun::Client.new ENV['MAILGUN_API_KEY']
+    sending_domain = ENV['MAILGUN_DOMAIN']
 
     begin
-      result = mandrill.messages.send message
-    rescue Mandrill::Error => e
+      result = mailgun.send_message sending_domain, message
+    rescue => e
       $REDIS.rpush "retries", {person: person, invite: invite, others_names: others_names}.inspect
-      puts "A mandrill error occurred: #{e.class} - #{e.message}"
+      puts "An error occurred sending email: #{e.class} - #{e.message}"
     end
   end
 end
