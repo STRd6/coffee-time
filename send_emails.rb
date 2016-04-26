@@ -19,7 +19,7 @@ def send_emails(recipients)
     email = person.last
 
     message = {
-      "text"=> "This week you're meeting with #{others_names} on Wednesday 12pm EST.
+      :text => "This week you're meeting with #{others_names} on Wednesday 12pm EST.
 
 Get to know your coworkers. Meet up in person or over a hangout, grab a coffee, and chat. Plan to meet for about half an hour and please reschedule if you have a conflict.
 
@@ -28,10 +28,10 @@ Enjoy!
 P.S. Email danielx@fogcreek.com with questions, comments or suggestions about CoffeeTime.
 
 - Mr. CoffeeTime",
-      "subject"=> "CoffeeTime with #{others_names}",
-      "from"=> "Daniel X <danielx@fogcreek.com>",
-      "to" => "#{person.first} <#{person.last}>",
-      "h:Reply-To" => reply_to
+      :subject => "CoffeeTime with #{others_names}",
+      :from => "Daniel X <danielx@fogcreek.com>",
+      :to => "#{person.first} <#{person.last}>",
+      :"h:Reply-To" => reply_to
     }
 
     mailgun = Mailgun::Client.new ENV['MAILGUN_API_KEY']
@@ -40,7 +40,9 @@ P.S. Email danielx@fogcreek.com with questions, comments or suggestions about Co
     begin
       result = mailgun.send_message sending_domain, message
     rescue => e
-      $REDIS.rpush "retries", {person: person, invite: invite, others_names: others_names}.inspect
+      puts ENV['MAILGUN_API_KEY']
+      puts sending_domain
+      # $REDIS.rpush "retries", {person: person, others_names: others_names}.inspect
       puts "An error occurred sending email: #{e.class} - #{e.message}"
     end
   end

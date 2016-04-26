@@ -19,7 +19,7 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.6.11)
-    json (1.8.1)
+    json (1.8.3)
     mailgun-ruby (1.1.0)
       json (~> 1.8)
       rest-client (~> 1.6)
@@ -56,4 +56,4 @@ DEPENDENCIES
   redis
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
