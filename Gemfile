@@ -1,8 +1,8 @@
-ruby '2.0.0'
+ruby '2.3.1'
 source "https://rubygems.org"
 
 gem "activesupport"
-gem "mandrill-api"
+gem 'mailgun-ruby', require: 'mailgun'
 gem "redis"
 
 group :development do
