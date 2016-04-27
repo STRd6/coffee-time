@@ -40,8 +40,6 @@ P.S. Email danielx@fogcreek.com with questions, comments or suggestions about Co
     begin
       result = mailgun.send_message sending_domain, message
     rescue => e
-      puts ENV['MAILGUN_API_KEY']
-      puts sending_domain
       # $REDIS.rpush "retries", {person: person, others_names: others_names}.inspect
       puts "An error occurred sending email: #{e.class} - #{e.message}"
     end
