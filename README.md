@@ -1,12 +1,12 @@
 CoffeeTime
 ==========
 
-Set up casual weekly mettings between random people in your organization.
+Set up casual weekly meetings between random people in your organization.
 
 Why
 ---
 
-Maintaining company culture, enhancing cross team communication, serendipitous learning are all important things. They often happen naturally as coworkers share an office space. What happens when many people are remote? Chance encounters with other people can become far more rare.
+Maintaining company culture, enhancing cross team communication, and serendipitous learning are all important things. They often happen naturally as coworkers share an office space. What happens when many people are remote? Chance encounters with other people can become far more rare.
 
 CoffeeTime was created to pair people up randomly to talk to one another. It doesn't matter what level in the org chart, or what role a person plays. Anyone can be matched up with anyone for a 30 minute video chat.
 
