@@ -19,9 +19,9 @@ def send_emails(recipients)
     email = person.last
 
     message = {
-      :text => "This week you're meeting with #{others_names} on Wednesday 12pm EST.
+      :text => "This week you're meeting with #{others_names}.
 
-Get to know your coworkers. Meet up in person or over a hangout, grab a coffee, and chat. Plan to meet for about half an hour and please reschedule if you have a conflict.
+Get to know your coworkers. Meet up in person or over a hangout, grab a coffee, and chat. Plan to meet for about half an hour, reach out to your person and schedule a time that works for both of you.
 
 Enjoy!
 
